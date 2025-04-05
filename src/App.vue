@@ -25,7 +25,8 @@ const { errors, defineField, handleSubmit } = useForm({
 })
 
 const dropZoneRef = ref<HTMLElement | null>(null)
-const avatarPreview = ref<string | ArrayBuffer | null>(null)
+const avatarPreview = ref<string | null>(null)
+const avatarError = ref('')
 
 const [fullName, fullNameAttrs] = defineField('fullName')
 const [email, emailAttrs] = defineField('email', {
@@ -50,14 +51,17 @@ function resetAvatarPreview() {
 }
 
 function handleAvatarChange(e: Event) {
-  const files = e.target?.files
-  previewAvatar(files[0])
+  const input = e.currentTarget as HTMLInputElement | null
+  const files = input?.files
+  if (files && files.length > 0) {
+    previewAvatar(files[0])
+  }
 }
 
 function previewAvatar(file: File) {
   const reader = new FileReader()
   reader.onloadend = function () {
-    avatarPreview.value = reader.result
+    avatarPreview.value = reader.result as string
   }
   reader.readAsDataURL(file)
 }
@@ -69,6 +73,10 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
 })
 
 const onSubmit = handleSubmit((values) => {
+  if (!avatarPreview.value) {
+    avatarError.value = 'Please upload an avatar'
+    return
+  }
   console.log(values)
   isGenerated.value = true
 })
@@ -200,9 +208,13 @@ const onSubmit = handleSubmit((values) => {
               @change="handleAvatarChange"
             />
 
-            <span class="text-neutral-300 flex items-center gap-2">
+            <span v-if="avatarError" class="flex items-center gap-2 text-preset-7 text-orange-500">
               <IconInfo />
-              <span class="text-preset-7">Upload your photo (JPG or PNG, max size: 500KB).</span>
+              <span>{{ avatarError }}</span>
+            </span>
+            <span v-else class="text-neutral-300 flex items-center gap-2 text-preset-7">
+              <IconInfo />
+              <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
             </span>
           </div>
           <div class="flex flex-col gap-3">
