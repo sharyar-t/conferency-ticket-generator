@@ -85,19 +85,19 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="relative w-screen h-screen overflow-hidden">
+  <div class="relative h-screen w-screen overflow-hidden">
     <!-- Pattern сверху -->
-    <div class="absolute inset-0 bg-[url('/images/pattern-lines.svg')] bg-repeat z-10"></div>
+    <div class="absolute inset-0 z-10 bg-[url('/images/pattern-lines.svg')] bg-repeat"></div>
 
     <!-- Основной фон -->
     <div
-      class="hidden lg:block absolute inset-0 bg-[url('/images/background-desktop.png')] bg-cover bg-center z-0"
+      class="absolute inset-0 z-0 hidden bg-[url('/images/background-desktop.png')] bg-cover bg-center lg:block"
     ></div>
     <div
-      class="hidden md:block lg:hidden absolute inset-0 bg-[url('/images/background-tablet.png')] bg-cover bg-center z-0"
+      class="absolute inset-0 z-0 hidden bg-[url('/images/background-tablet.png')] bg-cover bg-center md:block lg:hidden"
     ></div>
     <div
-      class="md:hidden absolute inset-0 bg-[url('/images/background-mobile.png')] bg-cover bg-center z-0"
+      class="absolute inset-0 z-0 bg-[url('/images/background-mobile.png')] bg-cover bg-center md:hidden"
     ></div>
 
     <!-- SVG в правом верхнем углу -->
@@ -110,30 +110,30 @@ const onSubmit = handleSubmit((values) => {
     <!-- SVG в левом нижнем углу -->
     <img
       src="/images/pattern-squiggly-line-bottom-desktop.svg"
-      class="hidden md:block absolute bottom-0 left-0 z-20"
+      class="absolute bottom-0 left-0 z-20 hidden md:block"
       alt="line bottom-left"
     />
     <img
       src="/images/pattern-squiggly-line-bottom-mobile-tablet.svg"
-      class="md:hidden absolute bottom-0 left-0 z-20"
+      class="absolute bottom-0 left-0 z-20 md:hidden"
       alt="line bottom-left"
     />
 
     <!-- Контент -->
     <main
-      class="max-w-[890px] mx-auto relative z-30 flex flex-col items-center justify-center h-full text-neutral-0"
+      class="text-neutral-0 relative z-30 mx-auto flex h-full max-w-[890px] flex-col items-center justify-center"
     >
       <!-- Лого -->
-      <div class="flex items-center gap-4 mb-14">
+      <div class="mb-14 flex items-center gap-4">
         <img src="/images/logo-mark.svg" alt="logo" />
         <span>Coding Conf</span>
       </div>
       <template v-if="isGenerated">
-        <div class="flex flex-col items-center text-center gap-5 mb-12">
+        <div class="mb-12 flex flex-col items-center gap-5 text-center">
           <h1 class="text-preset-1-mobile md:text-preset-1">
             Congrats,
             <span
-              class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-neutral-0"
+              class="to-neutral-0 bg-gradient-to-r from-orange-500 bg-clip-text text-transparent"
               >{{ fullName }} </span
             >! <br />Your ticket is ready!
           </h1>
@@ -143,13 +143,13 @@ const onSubmit = handleSubmit((values) => {
           </p>
         </div>
 
-        <div class="relative w-[343px] h-[160px] md:w-[600px] md:h-[280px]">
+        <div class="relative h-[160px] w-[343px] md:h-[280px] md:w-[600px]">
           <img
             src="/images/pattern-ticket.svg"
             class="absolute top-0 right-0 z-30"
             alt="line top-right"
           />
-          <div class="z-40 p-6 flex flex-col justify-between h-full relative">
+          <div class="relative z-40 flex h-full flex-col justify-between p-6">
             <div class="flex gap-5">
               <img src="/images/logo-mark.svg" alt="logo" />
               <div>
@@ -161,7 +161,7 @@ const onSubmit = handleSubmit((values) => {
               <img
                 v-if="avatarPreview"
                 :src="avatarPreview"
-                class="w-[80px] h-[80px] object-cover rounded-xl"
+                class="h-[80px] w-[80px] rounded-xl object-cover"
                 :alt="fullName"
               />
               <div class="flex flex-col gap-2">
@@ -172,7 +172,7 @@ const onSubmit = handleSubmit((values) => {
                 </div>
               </div>
               <div
-                class="absolute top-[50%] right-4 md:right-8 translate-y-[-50%] text-neutral-500 text-preset-3-mobile md:text-preset-3 [writing-mode:vertical-lr]"
+                class="text-preset-3-mobile md:text-preset-3 absolute top-[50%] right-4 translate-y-[-50%] text-neutral-500 [writing-mode:vertical-lr] md:right-8"
               >
                 #01609
               </div>
@@ -181,7 +181,7 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </template>
       <template v-else>
-        <div class="flex flex-col items-center text-center gap-5 mb-12">
+        <div class="mb-12 flex flex-col items-center gap-5 text-center">
           <h1 class="text-preset-1-mobile md:text-preset-1">
             Your Journey to Coding Conf 2025 Starts Here!
           </h1>
@@ -191,21 +191,21 @@ const onSubmit = handleSubmit((values) => {
         </div>
 
         <!-- Форма -->
-        <div class="flex flex-col gap-6 max-w-[460px] w-full">
-          <div class="flex flex-col gap-3 w-full">
+        <div class="flex w-full max-w-[460px] flex-col gap-6">
+          <div class="flex w-full flex-col gap-3">
             <label class="text-preset-5" @click="triggerDropZoneRef">Upload Avatar</label>
             <!-- Label для аватара -->
             <label
               for="avatar"
-              class="flex flex-col items-center border border-dashed border-neutral-500 justify-center w-full cursor-pointer p-4 rounded-lg text-center"
+              class="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-neutral-500 p-4 text-center"
               ref="dropZoneRef"
             >
               <!-- Иконка аватара -->
-              <span class="border border-neutral-700 rounded-xl p-[10px] mb-4">
+              <span class="mb-4 rounded-xl border border-neutral-700 p-[10px]">
                 <img
                   v-if="avatarPreview"
                   :src="avatarPreview"
-                  class="w-[30px] h-[30px] object-cover"
+                  class="h-[30px] w-[30px] object-cover"
                   alt="Your avatar"
                 />
                 <IconUpload v-else />
@@ -213,13 +213,13 @@ const onSubmit = handleSubmit((values) => {
               <p v-if="isOverDropZone" class="text-preset-6 text-neutral-300">Drop it here</p>
               <div v-else-if="avatarPreview" class="flex items-center gap-2">
                 <button
-                  class="text-preset-7 bg-neutral-700 px-2 py-1 rounded-sm"
+                  class="text-preset-7 rounded-sm bg-neutral-700 px-2 py-1"
                   @click="resetAvatarPreview"
                 >
                   Remove image
                 </button>
                 <button
-                  class="text-preset-7 bg-neutral-700 px-2 py-1 rounded-sm"
+                  class="text-preset-7 rounded-sm bg-neutral-700 px-2 py-1"
                   @click="triggerDropZoneRef"
                 >
                   Change image
@@ -237,11 +237,11 @@ const onSubmit = handleSubmit((values) => {
               @change="handleAvatarChange"
             />
 
-            <span v-if="avatarError" class="flex items-center gap-2 text-preset-7 text-orange-500">
+            <span v-if="avatarError" class="text-preset-7 flex items-center gap-2 text-orange-500">
               <IconInfo />
               <span>{{ avatarError }}</span>
             </span>
-            <span v-else class="text-neutral-300 flex items-center gap-2 text-preset-7">
+            <span v-else class="text-preset-7 flex items-center gap-2 text-neutral-300">
               <IconInfo />
               <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
             </span>
@@ -249,7 +249,7 @@ const onSubmit = handleSubmit((values) => {
           <div class="flex flex-col gap-3">
             <label for="fullName" class="text-preset-5">Full Name</label>
             <input v-model="fullName" v-bind="fullNameAttrs" id="fullName" type="text" />
-            <p v-if="errors.fullName" class="flex items-center gap-2 text-preset-7 text-orange-500">
+            <p v-if="errors.fullName" class="text-preset-7 flex items-center gap-2 text-orange-500">
               <IconInfo />
               {{ errors.fullName }}
             </p>
@@ -263,7 +263,7 @@ const onSubmit = handleSubmit((values) => {
               type="email"
               placeholder="example@email.com"
             />
-            <p v-if="errors.email" class="flex items-center gap-2 text-preset-7 text-orange-500">
+            <p v-if="errors.email" class="text-preset-7 flex items-center gap-2 text-orange-500">
               <IconInfo />
               {{ errors.email }}
             </p>
@@ -279,7 +279,7 @@ const onSubmit = handleSubmit((values) => {
             />
             <p
               v-if="errors.githubUsername"
-              class="flex items-center gap-2 text-preset-7 text-orange-500"
+              class="text-preset-7 flex items-center gap-2 text-orange-500"
             >
               <IconInfo />
               {{ errors.githubUsername }}
