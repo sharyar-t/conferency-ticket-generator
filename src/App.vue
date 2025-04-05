@@ -89,7 +89,13 @@ const onSubmit = handleSubmit((values) => {
 
     <!-- Основной фон -->
     <div
-      class="absolute inset-0 bg-[url('/images/background-desktop.png')] bg-cover bg-center z-0"
+      class="hidden lg:block absolute inset-0 bg-[url('/images/background-desktop.png')] bg-cover bg-center z-0"
+    ></div>
+    <div
+      class="hidden md:block lg:hidden absolute inset-0 bg-[url('/images/background-tablet.png')] bg-cover bg-center z-0"
+    ></div>
+    <div
+      class="md:hidden absolute inset-0 bg-[url('/images/background-mobile.png')] bg-cover bg-center z-0"
     ></div>
 
     <!-- SVG в правом верхнем углу -->
@@ -134,6 +140,8 @@ const onSubmit = handleSubmit((values) => {
             will send updates in the run up to the event.
           </p>
         </div>
+
+        <div></div>
       </template>
       <template v-else>
         <div class="flex flex-col items-center text-center gap-5 mb-12">
