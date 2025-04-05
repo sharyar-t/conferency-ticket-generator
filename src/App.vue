@@ -1,4 +1,46 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useDropZone } from '@vueuse/core'
+
+const dropZoneRef = ref<HTMLElement | null>(null)
+const avatarPreview = ref<string | ArrayBuffer | null>(null)
+const fullName = ref('')
+const email = ref('')
+const githubUsername = ref('')
+
+function onDrop(files: File[] | null) {
+  if (files) {
+    previewAvatar(files[0])
+  }
+}
+
+function triggerDropZoneRef() {
+  dropZoneRef.value?.click()
+}
+
+function resetAvatarPreview() {
+  avatarPreview.value = null
+}
+
+function handleAvatarChange(e: Event) {
+  const files = e.target?.files
+  previewAvatar(files[0])
+}
+
+function previewAvatar(file: File) {
+  const reader = new FileReader()
+  reader.onloadend = function () {
+    avatarPreview.value = reader.result
+  }
+  reader.readAsDataURL(file)
+}
+
+const { isOverDropZone } = useDropZone(dropZoneRef, {
+  onDrop,
+  dataTypes: ['image/jpeg'],
+  multiple: false,
+})
+</script>
 
 <template>
   <div class="relative w-screen h-screen overflow-hidden">
@@ -42,15 +84,23 @@
       <!-- Форма -->
       <div class="flex flex-col gap-6 min-w-[460px]">
         <div class="flex flex-col gap-3 w-full">
-          <p class="text-preset-5">Upload Avatar</p>
+          <label class="text-preset-5" @click="triggerDropZoneRef">Upload Avatar</label>
           <!-- Label для аватара -->
           <label
             for="avatar"
             class="flex flex-col items-center border border-dashed border-neutral-500 justify-center w-full cursor-pointer p-4 rounded-lg text-center"
+            ref="dropZoneRef"
           >
             <!-- Иконка аватара -->
             <span class="border border-neutral-700 rounded-xl p-[10px] mb-4">
+              <img
+                v-if="avatarPreview"
+                :src="avatarPreview"
+                class="w-[30px] h-[30px] object-cover"
+                alt=""
+              />
               <svg
+                v-else
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -72,12 +122,32 @@
                 />
               </svg>
             </span>
-
-            <p class="text-preset-6 text-neutral-300">Drag and drop or click to upload</p>
+            <p v-if="isOverDropZone" class="text-preset-6 text-neutral-300">Drop it here</p>
+            <div v-else-if="avatarPreview" class="flex items-center gap-2">
+              <button
+                class="text-preset-7 bg-neutral-700 px-2 py-1 rounded-sm"
+                @click="resetAvatarPreview"
+              >
+                Remove image
+              </button>
+              <button
+                class="text-preset-7 bg-neutral-700 px-2 py-1 rounded-sm"
+                @click="triggerDropZoneRef"
+              >
+                Change image
+              </button>
+            </div>
+            <p v-else class="text-preset-6 text-neutral-300">Drag and drop or click to upload</p>
           </label>
 
           <!-- Скрытый input для файлов -->
-          <input id="avatar" type="file" class="hidden" accept="image/*" />
+          <input
+            id="avatar"
+            type="file"
+            class="hidden"
+            accept="image/*"
+            @change="handleAvatarChange"
+          />
 
           <span class="text-neutral-300 flex items-center gap-2">
             <svg
@@ -106,15 +176,20 @@
         </div>
         <div class="flex flex-col gap-3">
           <label for="fullName" class="text-preset-5">Full Name</label>
-          <input id="fullName" type="text" />
+          <input v-model="fullName" id="fullName" type="text" />
         </div>
         <div class="flex flex-col gap-3">
           <label for="email" class="text-preset-5">Email Address</label>
-          <input id="email" type="email" placeholder="example@email.com" />
+          <input v-model="email" id="email" type="email" placeholder="example@email.com" />
         </div>
         <div class="flex flex-col gap-3">
           <label for="githubUsername" class="text-preset-5">Email Address</label>
-          <input id="githubUsername" type="text" placeholder="@yourusername" />
+          <input
+            v-model="githubUsername"
+            id="githubUsername"
+            type="text"
+            placeholder="@yourusername"
+          />
         </div>
         <div>
           <button class="button">Generate My Ticket</button>
