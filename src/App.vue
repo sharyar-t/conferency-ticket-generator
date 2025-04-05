@@ -183,7 +183,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
           <input v-model="email" id="email" type="email" placeholder="example@email.com" />
         </div>
         <div class="flex flex-col gap-3">
-          <label for="githubUsername" class="text-preset-5">Email Address</label>
+          <label for="githubUsername" class="text-preset-5">GitHub Username</label>
           <input
             v-model="githubUsername"
             id="githubUsername"
