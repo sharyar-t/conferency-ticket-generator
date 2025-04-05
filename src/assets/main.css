@@ -53,6 +53,26 @@
   --text-preset-1-mobile--letter-spacing: -1px;
   --text-preset-1-mobile--font-weight: 800;
 
+  --text-preset-2: 40px;
+  --text-preset-2--line-height: 110%;
+  --text-preset-2--letter-spacing: -1px;
+  --text-preset-2--font-weight: 700;
+
+  --text-preset-2-mobile: 24px;
+  --text-preset-2-mobile--line-height: 110%;
+  --text-preset-2-mobile--letter-spacing: -1px;
+  --text-preset-2-mobile--font-weight: 700;
+
+  --text-preset-3: 30px;
+  --text-preset-3--line-height: 110%;
+  --text-preset-3--letter-spacing: -1px;
+  --text-preset-3--font-weight: 700;
+
+  --text-preset-3-mobile: 22px;
+  --text-preset-3-mobile--line-height: 110%;
+  --text-preset-3-mobile--letter-spacing: -1px;
+  --text-preset-3-mobile--font-weight: 700;
+
   --text-preset-4: 24px;
   --text-preset-4--line-height: 120%;
   --text-preset-4--letter-spacing: -0.5px;
