@@ -102,7 +102,12 @@ const onSubmit = handleSubmit((values) => {
     <!-- SVG в левом нижнем углу -->
     <img
       src="/images/pattern-squiggly-line-bottom-desktop.svg"
-      class="absolute bottom-0 left-0 z-20"
+      class="hidden md:block absolute bottom-0 left-0 z-20"
+      alt="line bottom-left"
+    />
+    <img
+      src="/images/pattern-squiggly-line-bottom-mobile-tablet.svg"
+      class="md:hidden absolute bottom-0 left-0 z-20"
       alt="line bottom-left"
     />
 
