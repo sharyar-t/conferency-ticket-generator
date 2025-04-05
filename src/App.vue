@@ -1,47 +1,38 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="relative w-screen h-screen overflow-hidden">
+    <!-- Pattern сверху -->
+    <div class="absolute inset-0 bg-[url('/images/pattern-lines.svg')] bg-repeat z-10"></div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <!-- Основной фон -->
+    <div
+      class="absolute inset-0 bg-[url('/images/background-desktop.png')] bg-cover bg-center z-0"
+    ></div>
+
+    <!-- SVG в правом верхнем углу -->
+    <img
+      src="/images/pattern-squiggly-line-top.svg"
+      class="absolute top-0 right-0 z-20"
+      alt="line top-right"
+    />
+
+    <!-- SVG в левом нижнем углу -->
+    <img
+      src="/images/pattern-squiggly-line-bottom-desktop.svg"
+      class="absolute bottom-0 left-0 z-20"
+      alt="line bottom-left"
+    />
+
+    <!-- Контент -->
+    <div
+      class="relative z-30 flex items-center justify-center h-full text-white text-3xl font-bold"
+    >
+      <!-- Лого -->
+      <div class="flex items-center gap-4">
+        <img src="/images/logo-mark.svg" alt="logo" />
+        <span>Coding Conf</span>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
