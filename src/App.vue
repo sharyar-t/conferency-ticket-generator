@@ -25,14 +25,19 @@
     />
 
     <!-- Контент -->
-    <div
-      class="relative z-30 flex items-center justify-center h-full text-white text-3xl font-bold"
+    <main
+      class="max-w-[890px] mx-auto relative z-30 flex flex-col items-center justify-center h-full text-neutral-0"
     >
       <!-- Лого -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 mb-14">
         <img src="/images/logo-mark.svg" alt="logo" />
         <span>Coding Conf</span>
       </div>
-    </div>
+
+      <div class="flex flex-col items-center text-center gap-5">
+        <h1 class="text-preset-1">Your Journey to Coding Conf 2025 Starts Here!</h1>
+        <p class="text-preset-4">Secure your spot at next year's biggest coding conference.</p>
+      </div>
+    </main>
   </div>
 </template>

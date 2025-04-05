@@ -42,4 +42,14 @@
   --color-neutral-900: #0d082d;
   --color-orange-500: #f57463;
   --color-orange-700: #e1604f;
+
+  --text-preset-1: 60px;
+  --text-preset-1--line-height: 110%;
+  --text-preset-1--letter-spacing: -1px;
+  --text-preset-1--font-weight: 800;
+
+  --text-preset-4: 24px;
+  --text-preset-4--line-height: 120%;
+  --text-preset-4--letter-spacing: -0.5px;
+  --text-preset-4--font-weight: 500;
 }
