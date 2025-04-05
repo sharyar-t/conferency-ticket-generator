@@ -77,12 +77,16 @@ const { isOverDropZone } = useDropZone(dropZoneRef, {
       </div>
 
       <div class="flex flex-col items-center text-center gap-5 mb-12">
-        <h1 class="text-preset-1">Your Journey to Coding Conf 2025 Starts Here!</h1>
-        <p class="text-preset-4">Secure your spot at next year's biggest coding conference.</p>
+        <h1 class="text-preset-1-mobile md:text-preset-1">
+          Your Journey to Coding Conf 2025 Starts Here!
+        </h1>
+        <p class="text-preset-4-mobile md:text-preset-4">
+          Secure your spot at next year's biggest coding conference.
+        </p>
       </div>
 
       <!-- Форма -->
-      <div class="flex flex-col gap-6 min-w-[460px]">
+      <div class="flex flex-col gap-6 max-w-[460px] w-full">
         <div class="flex flex-col gap-3 w-full">
           <label class="text-preset-5" @click="triggerDropZoneRef">Upload Avatar</label>
           <!-- Label для аватара -->
